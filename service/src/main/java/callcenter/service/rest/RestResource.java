@@ -1,7 +1,9 @@
 package callcenter.service.rest;
 
 import javax.jws.WebService;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -31,5 +33,12 @@ public class RestResource {
     @Produces({MediaType.APPLICATION_JSON})
     public Client getClientById(@PathParam("id") Integer id) {
         return business.getClientById(id);
+    }
+
+    @POST
+    @Path("/client")
+    @Consumes({MediaType.APPLICATION_JSON})
+    public void createClient(Client c) {
+        business.createClient(c);
     }
 }

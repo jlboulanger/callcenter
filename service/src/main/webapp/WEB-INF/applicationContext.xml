@@ -30,6 +30,8 @@
 		  </jaxrs:serviceBeans>
 		  <jaxrs:providers>
 		     <ref bean="jsonProvider"/>
+		     <bean class="callcenter.service.exception.IllegalArgExceptionHandler"/>
+		     <bean class="callcenter.service.exception.NoResultExceptionHandler"/>
 		  </jaxrs:providers>
 	</jaxrs:server>
 
