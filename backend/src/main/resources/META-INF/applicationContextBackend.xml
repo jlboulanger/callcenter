@@ -40,5 +40,10 @@
           <property name="ds" ref="ds"/>
           <property name="namedTpl" ref="namedTpl"/>
         </bean>
+        <bean id="employeeDao" class="callcenter.backend.dao.EmployeeDAO">
+          <property name="tpl" ref="tpl"/>
+          <property name="ds" ref="ds"/>
+          <property name="clientDao" ref="clientDao"/>
+        </bean>
 
 </beans>

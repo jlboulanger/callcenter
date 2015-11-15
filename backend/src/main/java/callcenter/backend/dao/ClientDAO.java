@@ -90,6 +90,34 @@ public class ClientDAO {
         namedTpl.update(query, params);
     }
 
+    public void updateType(String type, Integer id) throws IllegalArgumentException {
+        if (type == null) {
+            throw new IllegalArgumentException("type is null");
+        }
+        if (id == null) {
+            throw new IllegalArgumentException("id is null");
+        }
+        String query = "update client set type = :type where id = :id ";
+        Map<String, Object> params = new HashMap<>(5);
+        params.put("type", type);
+        params.put("id", id);
+        namedTpl.update(query, params);
+    }
+ 
+    public void lock(Integer employeId, Integer clientId) throws IllegalArgumentException {
+        if (employeId == null) {
+            throw new IllegalArgumentException("employeId is null");
+        }
+        if (clientId == null) {
+            throw new IllegalArgumentException("clientId is null");
+        }
+        String query = "update client set locked_by = :employeId where id = :id ";
+        Map<String, Object> params = new HashMap<>(5);
+        params.put("employeId", employeId);
+        params.put("id", clientId);
+        namedTpl.update(query, params);
+    }
+
     public JdbcTemplate getTpl() {
         return tpl;
     }
