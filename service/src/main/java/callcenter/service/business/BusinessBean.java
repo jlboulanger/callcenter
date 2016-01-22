@@ -35,18 +35,22 @@ public class BusinessBean {
         return getClientById(clientDao.createClient(c, null).intValue());
     }
 
-    public Client updateClient(Client c) {
+    public Client saveClient(Client c) {
         if (c == null) {
             throw new IllegalArgumentException("parameter is null");
         }
-        if (c.getId() == null) {
-            throw new IllegalArgumentException("parameter id is null");
-        }
+
         if (StringUtils.isEmpty(c.getLastName()) || StringUtils.isEmpty(c.getFirstName())) {
             throw new IllegalArgumentException("A full name must be provided");
         }
-        clientDao.updateClient(c);
-        return getClientById(c.getId());
+        //System.out.println("client to save is " + c.toString());
+        //create or update
+        if (c.getId() == null) {
+            return getClientById(clientDao.createClient(c, null).intValue());
+        } else {
+            clientDao.updateClient(c);
+            return getClientById(c.getId());
+        }
     }
 
     public ClientDAO getDao() {

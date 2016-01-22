@@ -35,19 +35,19 @@ public class RestResource {
         return business.getClientById(id);
     }
     
-    @POST
+   /* @POST
     @Path("/client/update")
     @Produces({MediaType.APPLICATION_JSON})
     @Consumes({MediaType.APPLICATION_JSON})
     public Client updateClient( Client c) {
         return business.updateClient(c);
-    }
+    }*/
 
     @POST
-    @Path("/client")
+    @Path("/client/save")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public Client createClient(Client c) {
-        return business.createClient(c);
+        return business.saveClient(c);
     }
 }
