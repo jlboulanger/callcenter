@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Client implements Serializable {
     private static final long serialVersionUID = -177036411114984052L;
-    @XmlTransient
     private Integer id;
     private String lastName;
     private String firstName;

@@ -48,12 +48,17 @@ public class ContactDAO {
         return tpl.query(query,new Object[]{clientId}, rm);
     }
 
+    public void deleteContactInfo(Integer id) {
+        tpl.update("delete from contact_info where id = ? ", id);
+    }
+
     public ContactInfo getContactInfo(Integer id) {
 
         String query = "select id, client_Id, address1, address2, city, country, code, phone, dt_create, dt_update"
                         + " from contact_info where id = ? ";
         return tpl.queryForObject(query,new Object[]{id}, rm);
     }
+    
     public Number createContactInfo(ContactInfo c, Number clientId) throws IllegalArgumentException {
         if (c == null) {
             throw new IllegalArgumentException("param is null");

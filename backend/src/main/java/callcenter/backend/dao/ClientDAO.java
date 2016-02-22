@@ -59,7 +59,7 @@ public class ClientDAO {
         Map<String, Object> params = new HashMap<>(5);
         params.put("lastname", c.getLastName());
         params.put("firstname", c.getFirstName());
-        params.put("type", "PROSPECT");
+        params.put("type", "PROSPECT");//TODO type to define as enum here
         params.put("dt_create", new Date());
         params.put("dt_update", null);
         Number pk = insert.executeAndReturnKey(params);

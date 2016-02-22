@@ -25,7 +25,7 @@ public class BusinessBean {
         return clientDao.getClient(id);
     }
 
-    public Client createClient(Client c) {
+    public Client createClient(Client c) {//TODO create client + contact info
         if (c == null) {
             throw new IllegalArgumentException("parameter is null");
         }
@@ -43,16 +43,52 @@ public class BusinessBean {
         if (StringUtils.isEmpty(c.getLastName()) || StringUtils.isEmpty(c.getFirstName())) {
             throw new IllegalArgumentException("A full name must be provided");
         }
-        //System.out.println("client to save is " + c.toString());
+
         //create or update
         if (c.getId() == null) {
-            return getClientById(clientDao.createClient(c, null).intValue());
+            return createClient(c);
         } else {
             clientDao.updateClient(c);
             return getClientById(c.getId());
         }
     }
 
+    public ContactInfo createContactInfo(ContactInfo c) {
+        if (c == null) {
+            throw new IllegalArgumentException("parameter is null");
+        }
+        if (StringUtils.isEmpty(c.getAddress1()) && StringUtils.isEmpty(c.getAddress2())) { //TODO add method checking mandatory data
+            throw new IllegalArgumentException("A full adress must be provided");
+        }
+        return getContactInfoById(contactDao.createContactInfo(c, c.getClientId()).intValue());
+    }
+
+    public ContactInfo getContactInfoById(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("parameter is null");
+        }
+        return contactDao.getContactInfo(id);
+    }
+
+    public ContactInfo saveContactInfo(ContactInfo c) {
+        if (c == null) {
+            throw new IllegalArgumentException("parameter is null");
+        }
+      //create or update
+        if (c.getId() == null) {
+            return createContactInfo(c);
+        } else {
+            contactDao.update(c);
+            return getContactInfoById(c.getId());
+        }
+    }
+
+    public void deleteContactInfo(Integer id) {
+        if (id == null) {
+            throw new IllegalArgumentException("parameter is null");
+        }
+        contactDao.deleteContactInfo(id);
+    }
     public ClientDAO getDao() {
         return clientDao;
     }

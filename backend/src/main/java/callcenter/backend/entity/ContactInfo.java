@@ -10,9 +10,7 @@ import javax.xml.bind.annotation.XmlTransient;
 public class ContactInfo implements Serializable {
 
     private static final long serialVersionUID = -1670634250915466082L;
-    @XmlTransient
     private Integer id;
-    @XmlTransient
     private Integer clientId;
     private String address1;
     private String address2;
